@@ -1,37 +1,4 @@
-ngularjs set default route
-ngroute default route
-$routeprovider default route
-angularjs routeprovider default
-angularjs routeprovider otherwise example
-angularjs routeprovider redirectto
-angular otherwise route
-angular otherwise redirectto
-
-AngularJS default route
-
-In this video we will discuss how to set a default route in Angular. This is continuation to Part 27. Please watch Part 27 from AngularJS Tutorial before proceeding.
-
-We will continue with the example that we worked with in Part 27. 
-
-At the moment the problem is that, if you try to navigate to a route that is not configured, you will see only the layout page without any partial template injected into it.
-
-For example if you navigate to http://localhost:51983/ABC, since ABC is not a configured route you will see that no partial template is injected into the layout page (index.html)
-
-You will also have this same problem if you navigate to the root of the site i.e http://localhost:51983. The reason angular is displaying the empty layout template in both these cases, is because it does not know what partial template to inject. We want angular to redirect to default route if the user is trying to navigate to a route that is not configured.
-
-How to configure the default route in Angular
-Well that is straight forward. All you need is the following line in config() function in script.js file
-
-.otherwise({ redirectTo: "/home"
-})
-
-With the above change the code in config() function should be as shown below.
-
-.config(function ($routeProvider, $locationProvider) { $routeProvider .when("/home", { templateUrl: "Templates/home.html", controller: "homeController" }) .when("/courses", { templateUrl: "Templates/courses.html", controller: "coursesController" }) .when("/students", { templateUrl: "Templates/students.html", controller: "studentsController" }) .otherwise({ redirectTo: "/home" }) $locationProvider.html5Mode(true);
-})
-
-With this change if the user tries to navigate to a route that is not configured (http://localhost:51983/ABC) or just to the rooot URL (http://localhost:51983), the user will be automatically redirected to http://localhost:51983/home.
-
+Example From 
 Link for all dot net and sql server video tutorial playlists
 https://www.youtube.com/user/kudvenka...
 

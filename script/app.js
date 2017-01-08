@@ -19,7 +19,7 @@ var app = angular.module("routeApp",["ngRoute"])
 	                 		controller: "studentsController"
 	                 	})
 	                 	.when("/students/:id", {
-	                 		templateUrl: "Templates/studentsDeatils.html",
+	                 		templateUrl: "Templates/studentsDetails.html",
 	                 		controller: "studentsDetailsController"
 	                 	})
 	                 	
@@ -44,11 +44,24 @@ var app = angular.module("routeApp",["ngRoute"])
 
                  	})
 
-	                $scope.showData = function(ind){
-	                	console.log($scope.students.id = (ind + 1);
-	                	console.log($scope.students.id + 1);
-	                	$location.path('/students/'+ ($scope.students.id + 1));
+	                $scope.showData = function(id){
+
+
+	                	console.log($scope.students = id);
+	                	
+	                	$location.path('/students/'+ ($scope.students = id);
 	                } 	
+                 });
+
+                app.controller("studentsDetailsController",function($scope,$http,$routeParams){
+                 	    
+	                 	$http.get('customerinfo.json')
+	                 	.then(function(resp){
+	                 	$scope.student = resp.data;
+
+                 	})
+
+	                	$scope.student = $routeParams.id;
                  });
 
 

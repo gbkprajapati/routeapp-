@@ -17,11 +17,10 @@ var app = angular.module("routeApp",["ngRoute"])
 	                 	.when("/students", {
 	                 		templateUrl: "Templates/students.html",
 	                 		controller: "studentsController"
-	                 	});
-
-	                 	
-
-
+	                 	})
+	                 	.otherwise({
+	                 		redirectTo : "/home"
+	                 	})
                 }]);
 
                  app.controller("homeController",function($scope){

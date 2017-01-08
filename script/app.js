@@ -18,6 +18,11 @@ var app = angular.module("routeApp",["ngRoute"])
 	                 		templateUrl: "Templates/students.html",
 	                 		controller: "studentsController"
 	                 	})
+	                 	/*.when("/students/:id", {
+	                 		templateUrl: "Templates/studentsDeatils.html",
+	                 		controller: "studentsDetailsController"
+	                 	})*/
+	                 	
 	                 	.otherwise({
 	                 		redirectTo : "/home"
 	                 	})
@@ -31,12 +36,20 @@ var app = angular.module("routeApp",["ngRoute"])
                  	$scope.courses = ["C#","HTML","VB.net","SQL","ASP.net"];
                  });
 
-                 app.controller("studentsController",function($scope,$http){
+                 app.controller("studentsController",function($scope,$http/*,$location*/){
                  	    
 	                 	$http.get('customerinfo.json')
 	                 	.then(function(resp){
 	                 	$scope.students = resp.data;
+
                  	})
 
+	                /*$scope.showData = function(ind){
+	                	console.log($scope.students.id = (ind + 1);
+	                	console.log($scope.students.id);
+	                	$location.path('/students/'+ ($scope.students.id + 1));
+	                } */	
                  });
+
+
                 

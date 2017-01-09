@@ -43,26 +43,57 @@ var app = angular.module("routeApp",["ngRoute"])
 	                 	$scope.students = resp.data;
 
                  	})
-
+	                 	
 	                $scope.showData = function(id){
-
-
-	                	console.log($scope.students = id);
 	                	
-	                	$location.path('/students/'+ ($scope.students = id);
-	                } 	
+	                	$scope.selectedId = id;
+	                	//$location.path('/students/' + id);
+	                	$location.path('/students/'+$scope.selectedId);
+	                
+	                };	
                  });
 
-                app.controller("studentsDetailsController",function($scope,$http,$routeParams){
+                
+                 app.controller("studentsDetailsController", ['$scope','$routeParams','$http','$filter',function($scope, $routeParams, $http,$filter){
                  	    
-	                 	$http.get('customerinfo.json')
-	                 	.then(function(resp){
-	                 	$scope.student = resp.data;
+                 		
+                 	    $scope.search = function() {
+						    var url = 'customerinfo.json';
+						    return $http.get(url);
+						}
 
-                 	})
+						function getById(arr, id) {
+						    for (var i = 0, len = arr.length; i < len; i++) {
+						        if (arr[i].id === id) {
+						            return arr[i];  
+						        }
+						    }
+						}
+				        
+					    	
+	                 	$scope.search().then(function(resp){
+	                 		  $scope.students = resp.data; 
 
-	                	$scope.student = $routeParams.id;
-                 });
+	                 		  console.log("hello7");
+	                 		  console.log($scope.students);
+	                 		  console.log($routeParams.id);
+	                 		  /*console.log($scope.studentDe);*/
+	                 		  var a = $routeParams.id;
+	                 		  console.log(typeof a);
+	                 		  var b = parseInt(a);
+	                 		  
+	                 		  //console.log(typeof b);
+							  $scope.student = getById($scope.students, b);
+							  console.log($scope.student);
+
+							    
+							});
+
+	                 	
+
+				      
+				       
+			     }]);
 
 
                 
